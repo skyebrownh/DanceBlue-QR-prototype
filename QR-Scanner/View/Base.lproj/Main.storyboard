@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UL2-Xs-vFW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jmg-Hv-w8t">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,83 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Events-->
-        <scene sceneID="QSW-s3-JVH">
-            <objects>
-                <viewController title="Events" id="qf2-vR-Cbt" customClass="EventsVC" customModule="QR_Scanner" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vLd-Pd-EyR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EVENTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sfr-Wc-5jx">
-                                <rect key="frame" x="155.5" y="323" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Sfr-Wc-5jx" firstAttribute="centerY" secondItem="vLd-Pd-EyR" secondAttribute="centerY" id="70L-Qi-vhi"/>
-                            <constraint firstItem="Sfr-Wc-5jx" firstAttribute="centerX" secondItem="vLd-Pd-EyR" secondAttribute="centerX" id="sKe-0V-cMm"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="rSZ-IR-sOW"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Events" id="9AK-dE-y8d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0MA-mE-G4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1574" y="-589"/>
-        </scene>
-        <!--Home-->
-        <scene sceneID="ez5-R9-hFg">
-            <objects>
-                <viewController title="Home" id="pns-iw-zZZ" customClass="HomeVC" customModule="QR_Scanner" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ogZ-Zl-zee">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOMEPAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U40-Oe-nPw">
-                                <rect key="frame" x="141.5" y="323" width="92" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="U40-Oe-nPw" firstAttribute="centerY" secondItem="ogZ-Zl-zee" secondAttribute="centerY" id="E0R-3E-E4j"/>
-                            <constraint firstItem="U40-Oe-nPw" firstAttribute="centerX" secondItem="ogZ-Zl-zee" secondAttribute="centerX" id="jJx-bE-fb1"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="ilK-hy-dgg"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="Zwj-Xj-f6k"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vjd-zc-DI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="809" y="-798"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="5vD-na-Qes">
-            <objects>
-                <tabBarController id="UL2-Xs-vFW" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5l1-wc-cQL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="pns-iw-zZZ" kind="relationship" relationship="viewControllers" id="jfM-da-X4M"/>
-                        <segue destination="qf2-vR-Cbt" kind="relationship" relationship="viewControllers" id="0jH-kf-N5J"/>
-                        <segue destination="gRg-eM-ydy" kind="relationship" relationship="viewControllers" id="l1A-Jb-unN"/>
-                        <segue destination="jnI-3p-uaO" kind="relationship" relationship="viewControllers" id="0bc-Gz-wKC"/>
-                        <segue destination="1Id-2W-oma" kind="relationship" relationship="viewControllers" id="2OQ-bO-lkD"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KMr-cc-RpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="810" y="136"/>
-        </scene>
         <!--Scanner-->
         <scene sceneID="toD-pj-cBp">
             <objects>
@@ -101,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnB-YC-n2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1744.8" y="134.48275862068968"/>
+            <point key="canvasLocation" x="4263" y="133"/>
         </scene>
         <!--InfoVC-->
         <scene sceneID="aKP-9i-M4h">
@@ -186,63 +109,51 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n2i-Xk-tNa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2516" y="133.5832083958021"/>
+            <point key="canvasLocation" x="5102" y="135"/>
         </scene>
-        <!--Blog-->
-        <scene sceneID="ULO-Qa-XhS">
+        <!--New HomeVC-->
+        <scene sceneID="rOk-dA-TIZ">
             <objects>
-                <viewController title="Blog" id="jnI-3p-uaO" customClass="BlogVC" customModule="QR_Scanner" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YCR-ax-qYM">
+                <viewController id="jmg-Hv-w8t" customClass="NewHomeVC" customModule="QR_Scanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="irS-Rs-vYH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLOG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDQ-Ny-3Du">
-                                <rect key="frame" x="165" y="323" width="45" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7E5-Av-FVD">
+                                <rect key="frame" x="310" y="40" width="45" height="45"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="UWK-by-9md"/>
+                                    <constraint firstAttribute="height" constant="45" id="mz7-Np-Isk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="QR">
+                                    <color key="titleColor" red="0.0048598507420000003" green="0.096086271109999996" blue="0.57499289509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gRg-eM-ydy" kind="show" id="evp-Mh-wV8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOMEPAGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNi-9S-tbx">
+                                <rect key="frame" x="140.5" y="323.5" width="94.5" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="HDQ-Ny-3Du" firstAttribute="centerY" secondItem="YCR-ax-qYM" secondAttribute="centerY" id="0Py-UZ-fSn"/>
-                            <constraint firstItem="HDQ-Ny-3Du" firstAttribute="centerX" secondItem="YCR-ax-qYM" secondAttribute="centerX" id="X6m-Yo-OTd"/>
+                            <constraint firstItem="vOJ-n9-spy" firstAttribute="trailing" secondItem="7E5-Av-FVD" secondAttribute="trailing" constant="20" id="HJf-Dy-vOj"/>
+                            <constraint firstItem="7E5-Av-FVD" firstAttribute="top" secondItem="vOJ-n9-spy" secondAttribute="top" constant="20" id="Pur-ar-caI"/>
+                            <constraint firstItem="VNi-9S-tbx" firstAttribute="centerX" secondItem="irS-Rs-vYH" secondAttribute="centerX" id="XCX-UE-yeq"/>
+                            <constraint firstItem="VNi-9S-tbx" firstAttribute="centerY" secondItem="irS-Rs-vYH" secondAttribute="centerY" id="Y94-Xu-Vmz"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="VFj-wq-DZ3"/>
+                        <viewLayoutGuide key="safeArea" id="vOJ-n9-spy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Blog" id="i7B-zz-qpa"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1dL-uN-Rhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eRQ-TC-ZSz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1574" y="857"/>
-        </scene>
-        <!--More-->
-        <scene sceneID="IiD-u4-97W">
-            <objects>
-                <viewController title="More" id="1Id-2W-oma" customClass="MoreVC" customModule="QR_Scanner" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4Eh-5M-c58">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8s-iw-2zw">
-                                <rect key="frame" x="163.5" y="323" width="48" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="T8s-iw-2zw" firstAttribute="centerX" secondItem="4Eh-5M-c58" secondAttribute="centerX" id="O3D-e9-V4e"/>
-                            <constraint firstItem="T8s-iw-2zw" firstAttribute="centerY" secondItem="4Eh-5M-c58" secondAttribute="centerY" id="W99-CQ-k3K"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="i77-oB-vkF"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="More" id="Cuw-KU-xyr"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o3R-2Y-aMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="809" y="1033"/>
+            <point key="canvasLocation" x="3466.4000000000001" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>

@@ -92,7 +92,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             found(code: stringValue)
         }
         
-        dismiss(animated: true)
+        //dismiss(animated: true)
     }
     
     func found(code: String) {
@@ -102,7 +102,8 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         let transitionDelegate = DeckTransitioningDelegate()
         modal.transitioningDelegate = transitionDelegate
         modal.modalPresentationStyle = .custom
-        present(modal, animated: true, completion: nil)    }
+        present(modal, animated: true, completion: nil)
+    }
     
     override var prefersStatusBarHidden: Bool {
         return true
