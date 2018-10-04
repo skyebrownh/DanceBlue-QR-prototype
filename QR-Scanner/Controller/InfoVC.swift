@@ -69,6 +69,10 @@ class InfoVC: UIViewController {
         view.endEditing(true)
     }
     
+    @IBAction func donePressed(_ sender: Any) {
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension InfoVC: UIPickerViewDelegate, UIPickerViewDataSource {

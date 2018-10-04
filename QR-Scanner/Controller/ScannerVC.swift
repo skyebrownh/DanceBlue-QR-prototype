@@ -113,4 +113,8 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         return .portrait
     }
     
+    @IBAction func backPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
