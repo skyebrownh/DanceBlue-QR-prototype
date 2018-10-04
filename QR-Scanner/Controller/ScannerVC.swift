@@ -97,6 +97,9 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     func found(code: String) {
         print(code)
+        
+        NetworkService.instance.postData()
+        
         //When code is found, show InfoVC modal using deck transition
         let modal = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "modal") as! InfoVC
         let transitionDelegate = DeckTransitioningDelegate()

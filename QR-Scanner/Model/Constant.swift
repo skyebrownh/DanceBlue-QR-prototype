@@ -9,4 +9,4 @@
 import Foundation
 
 //url constants
-let BASE_URL = ""
+let BASE_URL = "https://573o4p17uc.execute-api.us-east-1.amazonaws.com/dev/api"
