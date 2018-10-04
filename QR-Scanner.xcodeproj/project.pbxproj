@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D6D6F3E2166A7C1002D0D34 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D6F3D2166A7C1002D0D34 /* Restaurant.swift */; };
+		3D6D6F402166AA6B002D0D34 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D6F3F2166AA6B002D0D34 /* Constant.swift */; };
 		3D7A31AE2138D6E300095CB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A31AD2138D6E300095CB9 /* AppDelegate.swift */; };
 		3D7A31B32138D6E300095CB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7A31B12138D6E300095CB9 /* Main.storyboard */; };
 		3D7A31B52138D6E500095CB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D7A31B42138D6E500095CB9 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D6D6F3D2166A7C1002D0D34 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		3D6D6F3F2166AA6B002D0D34 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		3D7A31AA2138D6E300095CB9 /* QR-Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QR-Scanner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D7A31AD2138D6E300095CB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D7A31B22138D6E300095CB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				3D7E11952143505000921117 /* Team.swift */,
+				3D6D6F3D2166A7C1002D0D34 /* Restaurant.swift */,
+				3D6D6F3F2166AA6B002D0D34 /* Constant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,8 +242,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D6D6F402166AA6B002D0D34 /* Constant.swift in Sources */,
 				3D7A31AE2138D6E300095CB9 /* AppDelegate.swift in Sources */,
 				3DA0546621612EFE003C315C /* NewHomeVC.swift in Sources */,
+				3D6D6F3E2166A7C1002D0D34 /* Restaurant.swift in Sources */,
 				3D7A31C72138D90200095CB9 /* ScannerVC.swift in Sources */,
 				3D7E11962143505000921117 /* Team.swift in Sources */,
 				3D7A31F0213E014400095CB9 /* InfoVC.swift in Sources */,
