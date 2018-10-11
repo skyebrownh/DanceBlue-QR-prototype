@@ -70,6 +70,8 @@ class InfoVC: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: Any) {
+        NetworkService.instance.body = ["name": nameTextField.text as Any, "team": teamTextField.text as Any]
+        NetworkService.instance.postData()
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     

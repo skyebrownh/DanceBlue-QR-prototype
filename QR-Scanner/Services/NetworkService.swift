@@ -14,11 +14,9 @@ class NetworkService {
     
     static let instance = NetworkService()
     
+    var body: [String : Any] = [:]
+    
     func postData() {
-        let body: [String : Any] = [
-            "message": "Hello World"
-        ]
-        
         Alamofire.request(BASE_URL, method: .post, parameters: body, encoding: JSONEncoding.default).responseJSON { (response) in
             
             if let json = response.result.value {
