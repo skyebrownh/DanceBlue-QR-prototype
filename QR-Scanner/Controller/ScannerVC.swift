@@ -100,6 +100,9 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         
         //When code is found, show InfoVC modal using deck transition
         let modal = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "modal") as! InfoVC
+        
+        modal.URL = code
+        
         let transitionDelegate = DeckTransitioningDelegate()
         modal.transitioningDelegate = transitionDelegate
         modal.modalPresentationStyle = .custom

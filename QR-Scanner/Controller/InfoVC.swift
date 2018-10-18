@@ -8,6 +8,7 @@
 
 import UIKit
 import SAConfettiView
+import Alamofire
 
 class InfoVC: UIViewController {
     
@@ -15,13 +16,15 @@ class InfoVC: UIViewController {
     @IBOutlet weak var teamTextField: UITextField!
     
     var confettiView: SAConfettiView!
+    var URL: String?
     
     var teams = [Team]()
-    var sampleTeams = [Team(teamName: "Team1", uid: ""),
-                       Team(teamName: "Team2", uid: ""),
-                       Team(teamName: "Team3", uid: ""),
-                       Team(teamName: "Team4", uid: ""),
-                       Team(teamName: "Team5", uid: "")]
+    var sampleTeams = [Team(teamName: "Team1", uid: "1"),
+                       Team(teamName: "Team2", uid: "2"),
+                       Team(teamName: "Team3", uid: "3"),
+                       Team(teamName: "Team4", uid: "4"),
+                       Team(teamName: "Team5", uid: "5")]
+    var selectedTeam: Team?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,8 @@ class InfoVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print(URL as Any)
+        
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView)
         self.view.sendSubviewToBack(confettiView)
@@ -70,8 +75,17 @@ class InfoVC: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: Any) {
-        NetworkService.instance.body = ["name": nameTextField.text as Any, "team": teamTextField.text as Any]
-        NetworkService.instance.postData()
+        guard var receivedURL = URL else { return }
+        guard let team = selectedTeam else { return }
+        guard let name = nameTextField.text?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        let appendString: String = "&teamId=\(team.uid)&name=\(name)";
+        
+        receivedURL += appendString
+        print(receivedURL)
+        Alamofire.request(receivedURL)
+        
+//        NetworkService.instance.body = ["name": nameTextField.text as Any, "team": teamTextField.text as Any]
+//        NetworkService.instance.postData()
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
@@ -92,6 +106,7 @@ extension InfoVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         teamTextField.text = sampleTeams[row].teamName
+        selectedTeam = sampleTeams[row]
     }
 }
 

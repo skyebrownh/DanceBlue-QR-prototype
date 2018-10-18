@@ -22,8 +22,21 @@ class NetworkService {
             if let json = response.result.value {
              print(json)
             } else {
-             print("error in retrieving json data")
+             print("error in posting json data")
             }
         }
     }
+    
+//    func getTeams() {
+//        Alamofire.request(<#T##url: URLConvertible##URLConvertible#>).responseJSON { (response) in
+//
+//            if let json = response.result.value {
+//              print(json)
+//                //FIXME: parse data
+//            } else {
+//                print("error in retrieving json data")
+//            }
+//
+//        }
+//    }
 }
