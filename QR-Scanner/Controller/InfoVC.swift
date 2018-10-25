@@ -39,6 +39,8 @@ class InfoVC: UIViewController {
         var preferredStatusBarStyle: UIStatusBarStyle {
             return .lightContent
         }
+        
+        //FIXME: call get teams
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,9 +49,22 @@ class InfoVC: UIViewController {
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView)
         self.view.sendSubviewToBack(confettiView)
-        confettiView.colors = [UIColor.blue, UIColor.yellow, UIColor.white]
+        confettiView.colors = [UIColor(red:0.02, green:0.22, blue:0.62, alpha:1.0), UIColor(red:0.95, green:0.74, blue:0.27, alpha:1.0)]
         confettiView.intensity = 1.0
         confettiView.startConfetti()
+        
+        // instantiate back button
+        let button = UIButton(frame: CGRect(x: 20, y: 40, width: 80, height: 40))
+        button.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        button.setTitle("BACK", for: .normal)
+        button.layer.cornerRadius = 0.5 * button.frame.height
+        button.addTarget(self, action: #selector(newButtonAction), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    
+    @objc func newButtonAction() {
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func createPickerView() {
@@ -92,16 +107,15 @@ class InfoVC: UIViewController {
     func getTeams() {
         // http request to populate teams array with teams
         
-        //        Alamofire.request(<#T##url: URLConvertible##URLConvertible#>).responseJSON { (response) in
-        //
-        //            if let json = response.result.value {
-        //              print(json)
-        //                //FIXME: parse data
-        //            } else {
-        //                print("error in retrieving json data")
-        //            }
-        //
-        //        }
+//        Alamofire.request().responseJSON { (response) in
+//
+//            if let json = response.result.value {
+//              print(json)
+//                //FIXME: parse data
+//            } else {
+//                print("error in retrieving json data")
+//            }
+//        }
     }
     
 }

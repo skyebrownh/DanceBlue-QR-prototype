@@ -14,6 +14,8 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    
+    let domainName: String = "www.hi-from-a-fake-qr-code.com"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +111,20 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func found(code: String) {
+        //FIXME: check for valid URL
+        //if invalid, use alert controller to display error
+        guard let codeURL = URL(string: code),
+            let receivedDomain = codeURL.host,
+            receivedDomain == domainName
+            else {
+                //if invalid, use alert controller to display error
+                let alert = UIAlertController(title: "ERROR", message: "There was an error retrieving the data from the QR code. Try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                return
+            }
+        
+//        print("The received domain is: " + receivedDomain)
         print(code)
         
         //When code is found, show InfoVC modal using deck transition
@@ -120,6 +136,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         modal.transitioningDelegate = transitionDelegate
         modal.modalPresentationStyle = .custom
         present(modal, animated: true, completion: nil)
+
     }
     
     override var prefersStatusBarHidden: Bool {
