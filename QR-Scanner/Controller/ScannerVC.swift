@@ -74,9 +74,10 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
         
         // instantiate back button
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        let button = UIButton(frame: CGRect(x: 20, y: 40, width: 80, height: 40))
+        button.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         button.setTitle("BACK", for: .normal)
+        button.layer.cornerRadius = 0.5 * button.frame.height
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         self.view.addSubview(button)
