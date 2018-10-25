@@ -72,6 +72,18 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         if (captureSession?.isRunning == false) {
             captureSession.startRunning()
         }
+        
+        // instantiate back button
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        button.setTitle("BACK", for: .normal)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    
+    @objc func buttonAction() {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
