@@ -89,6 +89,21 @@ class InfoVC: UIViewController {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    func getTeams() {
+        // http request to populate teams array with teams
+        
+        //        Alamofire.request(<#T##url: URLConvertible##URLConvertible#>).responseJSON { (response) in
+        //
+        //            if let json = response.result.value {
+        //              print(json)
+        //                //FIXME: parse data
+        //            } else {
+        //                print("error in retrieving json data")
+        //            }
+        //
+        //        }
+    }
+    
 }
 
 extension InfoVC: UIPickerViewDelegate, UIPickerViewDataSource {
