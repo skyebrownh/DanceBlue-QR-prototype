@@ -9,14 +9,18 @@
 import UIKit
 import SAConfettiView
 import Alamofire
+import SwiftyJSON
 
 class InfoVC: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var teamTextField: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
     
     var confettiView: SAConfettiView!
     var URL: String?
+    
+    let pickerView = UIPickerView()
     
     var teams = [Team]()
     var sampleTeams = [Team(teamName: "Team1", uid: "1"),
@@ -31,6 +35,7 @@ class InfoVC: UIViewController {
         
         nameTextField.delegate = self
         teamTextField.delegate = self
+        signInButton.layer.cornerRadius = 5;
         
         createPickerView()
         createToolbar()
@@ -40,7 +45,8 @@ class InfoVC: UIViewController {
             return .lightContent
         }
         
-        //FIXME: call get teams
+        // get all teams
+        getTeams()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,12 +69,21 @@ class InfoVC: UIViewController {
         self.view.addSubview(button)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        createCALayer()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
+    
     @objc func newButtonAction() {
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func createPickerView() {
-        let pickerView = UIPickerView()
         pickerView.delegate = self
         
         teamTextField.inputView = pickerView
@@ -85,37 +100,71 @@ class InfoVC: UIViewController {
         teamTextField.inputAccessoryView = toolbar
     }
     
+    func createCALayer() {
+        // function that creates the blue top overlay
+        
+        let layer = CALayer()
+        layer.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.frame.height * 2, height: self.view.frame.height * 2))
+        
+        let delta = self.view.frame.height - 0.5 * self.view.frame.width
+        layer.frame.origin.x -= delta
+        layer.frame.origin.y -= 1.6 * self.view.frame.height
+        layer.cornerRadius = 0.5 * layer.frame.height
+        layer.backgroundColor = #colorLiteral(red: 0.004859850742, green: 0.09608627111, blue: 0.5749928951, alpha: 1)
+        self.view.layer.insertSublayer(layer, at: 0)
+        self.view.clipsToBounds = true
+    }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    @IBAction func donePressed(_ sender: Any) {
+    @IBAction func signInPressed(_ sender: Any) {
         guard var receivedURL = URL else { return }
         guard let team = selectedTeam else { return }
         guard let name = nameTextField.text?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         let appendString: String = "&teamId=\(team.uid)&name=\(name)";
         
         receivedURL += appendString
-        print(receivedURL)
+        //        print(receivedURL)
         Alamofire.request(receivedURL)
         
-//        NetworkService.instance.body = ["name": nameTextField.text as Any, "team": teamTextField.text as Any]
-//        NetworkService.instance.postData()
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func getTeams() {
         // http request to populate teams array with teams
-        
-//        Alamofire.request().responseJSON { (response) in
-//
-//            if let json = response.result.value {
-//              print(json)
-//                //FIXME: parse data
-//            } else {
-//                print("error in retrieving json data")
-//            }
-//        }
+        Alamofire.request("http://192.168.1.171:8000/api/getTeamNames").responseJSON { (response) in
+
+//            print(response)
+
+            guard let data = response.data else {
+                print("failed response.data")
+                return
+            }
+//            print(data)
+            do {
+                let jsonResponse = try JSON(data: data)
+                guard let jsonData = jsonResponse["teams"].array else {
+                    print("failed JSON(data: data)")
+                    return
+                }
+                print("JSON data: ", jsonData)
+                
+                for teamData in jsonData {
+                    print("Team data: ", teamData)
+                    if let teamName = teamData["teamName"].string,
+                    let teamID = teamData["id"].int {
+                        let team = Team(teamName: teamName, uid: String(teamID))
+                        self.teams.append(team)
+                        print("Team count: ", self.teams.count)
+                    }
+                }
+                self.pickerView.reloadAllComponents()
+            } catch {
+                print("error trying to print JSON data")
+            }
+        }
     }
     
 }
@@ -126,16 +175,16 @@ extension InfoVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return sampleTeams.count
+        return teams.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return sampleTeams[row].teamName
+        return teams[row].teamName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        teamTextField.text = sampleTeams[row].teamName
-        selectedTeam = sampleTeams[row]
+        teamTextField.text = teams[row].teamName
+        selectedTeam = teams[row]
     }
 }
 

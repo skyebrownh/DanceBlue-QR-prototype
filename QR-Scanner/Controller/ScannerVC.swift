@@ -15,7 +15,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    let domainName: String = "www.hi-from-a-fake-qr-code.com"
+    let domainName: String = "192.168.1.171"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
-        view.layer.addSublayer(previewLayer)
+        view.layer.insertSublayer(previewLayer, at: 0)
         
         captureSession.startRunning()
     }
@@ -111,6 +111,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func found(code: String) {
+        print(code)
         //FIXME: check for valid URL
         //if invalid, use alert controller to display error
         guard let codeURL = URL(string: code),
@@ -125,14 +126,14 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             }
         
 //        print("The received domain is: " + receivedDomain)
-        print(code)
+//        print(code)
         
         //When code is found, show InfoVC modal using deck transition
         let modal = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "modal") as! InfoVC
         
         modal.URL = code
         
-        let transitionDelegate = DeckTransitioningDelegate()
+        let transitionDelegate = DeckTransitioningDelegate(isSwipeToDismissEnabled: false)
         modal.transitioningDelegate = transitionDelegate
         modal.modalPresentationStyle = .custom
         present(modal, animated: true, completion: nil)
