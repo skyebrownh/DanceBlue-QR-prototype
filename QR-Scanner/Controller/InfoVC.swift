@@ -10,6 +10,7 @@ import UIKit
 import SAConfettiView
 import Alamofire
 import SwiftyJSON
+import CoreData
 
 class InfoVC: UIViewController {
     
@@ -17,17 +18,20 @@ class InfoVC: UIViewController {
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
+    // Core Data variables
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     var confettiView: SAConfettiView!
     var URL: String?
     
     let pickerView = UIPickerView()
     
     var teams = [Team]()
-    var sampleTeams = [Team(teamName: "Team1", uid: "1"),
-                       Team(teamName: "Team2", uid: "2"),
-                       Team(teamName: "Team3", uid: "3"),
-                       Team(teamName: "Team4", uid: "4"),
-                       Team(teamName: "Team5", uid: "5")]
+//    var sampleTeams = [Team(teamName: "Team1", uid: "1"),
+//                       Team(teamName: "Team2", uid: "2"),
+//                       Team(teamName: "Team3", uid: "3"),
+//                       Team(teamName: "Team4", uid: "4"),
+//                       Team(teamName: "Team5", uid: "5")]
     var selectedTeam: Team?
     
     override func viewDidLoad() {
@@ -45,7 +49,7 @@ class InfoVC: UIViewController {
             return .lightContent
         }
         
-        // get all teams
+        // FIXME: get all teams
         getTeams()
     }
     
@@ -123,7 +127,7 @@ class InfoVC: UIViewController {
         guard var receivedURL = URL else { return }
         guard let team = selectedTeam else { return }
         guard let name = nameTextField.text?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        let appendString: String = "&teamId=\(team.uid)&name=\(name)";
+        let appendString: String = "&teamId=\(String(describing: team.uid))&name=\(name)";
         
         receivedURL += appendString
         //        print(receivedURL)
@@ -135,9 +139,7 @@ class InfoVC: UIViewController {
     func getTeams() {
         // http request to populate teams array with teams
         Alamofire.request("http://192.168.1.171:8000/api/getTeamNames").responseJSON { (response) in
-
 //            print(response)
-
             guard let data = response.data else {
                 print("failed response.data")
                 return
@@ -155,14 +157,17 @@ class InfoVC: UIViewController {
                     print("Team data: ", teamData)
                     if let teamName = teamData["teamName"].string,
                     let teamID = teamData["id"].int {
-                        let team = Team(teamName: teamName, uid: String(teamID))
+                        //let team = Team(teamName: teamName, uid: String(teamID))
+                        let team = Team(context: self.context)
+                        team.teamName = teamName
+                        team.uid = String(teamID)
                         self.teams.append(team)
                         print("Team count: ", self.teams.count)
                     }
                 }
                 self.pickerView.reloadAllComponents()
             } catch {
-                print("error trying to print JSON data")
+                print("error trying to print JSON data: \(error)")
             }
         }
     }

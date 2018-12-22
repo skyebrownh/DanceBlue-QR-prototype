@@ -14,8 +14,8 @@
 		3D7A31B82138D6E500095CB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7A31B62138D6E500095CB9 /* LaunchScreen.storyboard */; };
 		3D7A31C72138D90200095CB9 /* ScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A31C62138D90200095CB9 /* ScannerVC.swift */; };
 		3D7A31F0213E014400095CB9 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7A31EF213E014400095CB9 /* InfoVC.swift */; };
-		3D7E11962143505000921117 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7E11952143505000921117 /* Team.swift */; };
 		3DA0546621612EFE003C315C /* NewHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0546521612EFE003C315C /* NewHomeVC.swift */; };
+		3DEE361321CDE90A00F5F156 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3DEE361121CDE90A00F5F156 /* DataModel.xcdatamodeld */; };
 		8D07A013E691B3823B892970 /* Pods_QR_Scanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9E5B15F0E9DFCBD1158C43 /* Pods_QR_Scanner.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,8 +29,8 @@
 		3D7A31B92138D6E500095CB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D7A31C62138D90200095CB9 /* ScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerVC.swift; sourceTree = "<group>"; };
 		3D7A31EF213E014400095CB9 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
-		3D7E11952143505000921117 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		3DA0546521612EFE003C315C /* NewHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHomeVC.swift; sourceTree = "<group>"; };
+		3DEE361221CDE90A00F5F156 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		45C9AE2A91EAE2D207FB0102 /* Pods-QR-Scanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR-Scanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QR-Scanner/Pods-QR-Scanner.debug.xcconfig"; sourceTree = "<group>"; };
 		DCC19CCDCA1872B9162ACC57 /* Pods-QR-Scanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QR-Scanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-QR-Scanner/Pods-QR-Scanner.release.xcconfig"; sourceTree = "<group>"; };
 		FA9E5B15F0E9DFCBD1158C43 /* Pods_QR_Scanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QR_Scanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,8 +109,8 @@
 		3D7A31C12138D70D00095CB9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3D7E11952143505000921117 /* Team.swift */,
 				3D6D6F3D2166A7C1002D0D34 /* Restaurant.swift */,
+				3DEE361121CDE90A00F5F156 /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,8 +246,8 @@
 				3D7A31AE2138D6E300095CB9 /* AppDelegate.swift in Sources */,
 				3DA0546621612EFE003C315C /* NewHomeVC.swift in Sources */,
 				3D6D6F3E2166A7C1002D0D34 /* Restaurant.swift in Sources */,
+				3DEE361321CDE90A00F5F156 /* DataModel.xcdatamodeld in Sources */,
 				3D7A31C72138D90200095CB9 /* ScannerVC.swift in Sources */,
-				3D7E11962143505000921117 /* Team.swift in Sources */,
 				3D7A31F0213E014400095CB9 /* InfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +448,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3DEE361121CDE90A00F5F156 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3DEE361221CDE90A00F5F156 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 3DEE361221CDE90A00F5F156 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3D7A31A22138D6E200095CB9 /* Project object */;
 }
