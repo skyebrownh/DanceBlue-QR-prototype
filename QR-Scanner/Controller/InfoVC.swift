@@ -48,8 +48,7 @@ class InfoVC: UIViewController {
         var preferredStatusBarStyle: UIStatusBarStyle {
             return .lightContent
         }
-        
-        // FIXME: get all teams
+
         getTeams()
     }
     
@@ -71,6 +70,9 @@ class InfoVC: UIViewController {
         button.addTarget(self, action: #selector(newButtonAction), for: .touchUpInside)
         
         self.view.addSubview(button)
+        
+        // load items from core data
+        loadCoreDataTeams()
     }
     
     override func viewDidLayoutSubviews() {
@@ -165,10 +167,21 @@ class InfoVC: UIViewController {
                         print("Team count: ", self.teams.count)
                     }
                 }
+                // FIXME: load all teams into core data
+                
                 self.pickerView.reloadAllComponents()
             } catch {
                 print("error trying to print JSON data: \(error)")
             }
+        }
+    }
+    
+    func loadCoreDataTeams() {
+        let request: NSFetchRequest<Team> = Team.fetchRequest()
+        do {
+            teams = try context.fetch(request)
+        } catch {
+            print("Error retrieving teams from core data: \(error)")
         }
     }
     
