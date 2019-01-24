@@ -14,33 +14,25 @@ import CoreData
 
 class InfoVC: UIViewController {
     
+    // MARK: Variables
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var teamTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-    
-    // Core Data variables
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let pickerView = UIPickerView()
     
     var confettiView: SAConfettiView!
     var URL: String?
     
-    let pickerView = UIPickerView()
-    
     var teams = [Team]()
-//    var sampleTeams = [Team(teamName: "Team1", uid: "1"),
-//                       Team(teamName: "Team2", uid: "2"),
-//                       Team(teamName: "Team3", uid: "3"),
-//                       Team(teamName: "Team4", uid: "4"),
-//                       Team(teamName: "Team5", uid: "5")]
     var selectedTeam: Team?
     
+    // MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nameTextField.delegate = self
         teamTextField.delegate = self
         signInButton.layer.cornerRadius = 5;
-        
         createPickerView()
         createToolbar()
         
@@ -49,12 +41,14 @@ class InfoVC: UIViewController {
             return .lightContent
         }
 
-        getTeams()
+        NetworkService.instance.getTeams()
+        pickerView.reloadAllComponents()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         print(URL as Any)
         
+        // set up confetti view
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView)
         self.view.sendSubviewToBack(confettiView)
@@ -68,11 +62,18 @@ class InfoVC: UIViewController {
         button.setTitle("BACK", for: .normal)
         button.layer.cornerRadius = 0.5 * button.frame.height
         button.addTarget(self, action: #selector(newButtonAction), for: .touchUpInside)
-        
         self.view.addSubview(button)
         
         // load items from core data
-        loadCoreDataTeams()
+        NetworkService.instance.loadCoreDataTeams()
+        pickerView.reloadAllComponents()
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+    }
+    
+    // back button selector function
+    @objc func newButtonAction() {
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -85,13 +86,8 @@ class InfoVC: UIViewController {
         super.touchesBegan(touches, with: event)
     }
     
-    @objc func newButtonAction() {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-    
     func createPickerView() {
         pickerView.delegate = self
-        
         teamTextField.inputView = pickerView
     }
     
@@ -106,9 +102,13 @@ class InfoVC: UIViewController {
         teamTextField.inputAccessoryView = toolbar
     }
     
+    // done button selector function
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // creates the blue top overlay
     func createCALayer() {
-        // function that creates the blue top overlay
-        
         let layer = CALayer()
         layer.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.frame.height * 2, height: self.view.frame.height * 2))
         
@@ -121,91 +121,45 @@ class InfoVC: UIViewController {
         self.view.clipsToBounds = true
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+    // MARK: Network Methods
     
+    // sends back the necessary information to backend
     @IBAction func signInPressed(_ sender: Any) {
         guard var receivedURL = URL else { return }
+        print(receivedURL)
         guard let team = selectedTeam else { return }
         guard let name = nameTextField.text?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
         let appendString: String = "&teamId=\(String(describing: team.uid))&name=\(name)";
         
         receivedURL += appendString
-        //        print(receivedURL)
+        print("With extension: " + receivedURL)
         Alamofire.request(receivedURL)
         
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    
-    func getTeams() {
-        // http request to populate teams array with teams
-        Alamofire.request("http://192.168.1.171:8000/api/getTeamNames").responseJSON { (response) in
-//            print(response)
-            guard let data = response.data else {
-                print("failed response.data")
-                return
-            }
-//            print(data)
-            do {
-                let jsonResponse = try JSON(data: data)
-                guard let jsonData = jsonResponse["teams"].array else {
-                    print("failed JSON(data: data)")
-                    return
-                }
-                print("JSON data: ", jsonData)
-                
-                for teamData in jsonData {
-                    print("Team data: ", teamData)
-                    if let teamName = teamData["teamName"].string,
-                    let teamID = teamData["id"].int {
-                        //let team = Team(teamName: teamName, uid: String(teamID))
-                        let team = Team(context: self.context)
-                        team.teamName = teamName
-                        team.uid = String(teamID)
-                        self.teams.append(team)
-                        print("Team count: ", self.teams.count)
-                    }
-                }
-                // FIXME: load all teams into core data
-                
-                self.pickerView.reloadAllComponents()
-            } catch {
-                print("error trying to print JSON data: \(error)")
-            }
-        }
-    }
-    
-    func loadCoreDataTeams() {
-        let request: NSFetchRequest<Team> = Team.fetchRequest()
-        do {
-            teams = try context.fetch(request)
-        } catch {
-            print("Error retrieving teams from core data: \(error)")
-        }
-    }
-    
 }
 
+// MARK: Picker View Methods
 extension InfoVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return teams.count
+        return NetworkService.instance.teams.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return teams[row].teamName
+        return NetworkService.instance.teams[row].teamName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        teamTextField.text = teams[row].teamName
-        selectedTeam = teams[row]
+        teamTextField.text = NetworkService.instance.teams[row].teamName
+        selectedTeam = NetworkService.instance.teams[row]
     }
 }
 
+// MARK: Text Field Methods
 extension InfoVC: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         confettiView.stopConfetti()
