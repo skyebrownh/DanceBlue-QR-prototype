@@ -1,11 +1,9 @@
 # DanceBlue QR Prototype
 
-***
 **Table Of Contents**
 - [Project description](#project-description)
 - [Installation](#installation)
 - [Contributing and Support](#contributing-and-support)
-***
 
 #### Project description:
 - Finished prototype for the [UK DanceBlue mobile app](https://github.com/UKDanceBlue/Mobile-iOS) that includes a QR scanner that sends data back to a custom web API. This feature alone eliminated hundreds of hours of manual work previously done by hand for the UK DanceBlue Committee.
