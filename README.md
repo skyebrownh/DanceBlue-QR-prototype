@@ -1,16 +1,31 @@
 # DanceBlue QR Prototype
 
-This iOS app is a finished prototype for the UK DanceBlue mobile app that includes a QR scanner that sends data back to a custom web API. This feature alone eliminated hundreds of hours of manual work previously done by hand.
+***
+**Table Of Contents**
+- [Project description](#project-description)
+- [Installation](#installation)
+- [Contributing and Support](#contributing-and-support)
+***
 
-Languages and frameworks:
-1. Swift 4.0 (minimal Objective-C)
-2. Xcode 10
-3. Cocoapods
+#### Project description:
+- Finished prototype for the [UK DanceBlue mobile app](https://github.com/UKDanceBlue/Mobile-iOS) that includes a QR scanner that sends data back to a custom web API. This feature alone eliminated hundreds of hours of manual work previously done by hand for the UK DanceBlue Committee.
 
+*languages and frameworks:*
+- swift 4.0 (minimal Objective-C)
+- xcode 10
+- cocoapods
    - Alamofire  
-   
    - SwiftyJSON  
-   
-   - DeckTransition  
-   
+   - DeckTransition 
    - SAConfettiView  
+
+## Installation
+
+The UK DanceBlue app can be downloaded on android and ios devices.
+
+## Contributing and Support
+
+Contact the UK DanceBlue team for any questions or potential contributions.
+
+*Acknowledgements:*
+- [UK DanceBlue](http://www.danceblue.org/)
