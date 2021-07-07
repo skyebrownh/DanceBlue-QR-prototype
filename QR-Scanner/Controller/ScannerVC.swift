@@ -15,7 +15,7 @@ class ScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    let domainName: String = "192.168.1.171"
+    let domainName: String = "10.47.196.102"
 
     override func viewDidLoad() {
         super.viewDidLoad()
